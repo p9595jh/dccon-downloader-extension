@@ -1,45 +1,33 @@
-# Svelte Typescript Chrome Extension Boilerplate
+# 디시콘 다운로더 크롬 확장프로그램
 
-Boilerplate for Chrome Extension Svelte Typescript project.
+## About
 
-## Features
+크롬 확장프로그램으로 디시콘을 다운로드 할 수 있습니다.
 
--   [Svelte](https://svelte.dev/)
--   [TypeScript](https://www.typescriptlang.org/)
--   [Vite](https://vitejs.dev/)
--   [CRXJS Vite Plugin](https://github.com/crxjs/chrome-extension-tools/blob/main/packages/vite-plugin/README.md)
--   [Chrome Extensions Manifest V3](https://developer.chrome.com/docs/extensions/mv3/intro/)
+## Flow
 
-## Demo
+Golang으로 된 프록시 서버를 실행시킨 뒤, 크롬 확장프로그램에서 프록시 서버를 통해 디시콘을 다운로드 합니다. 브라우저를 통해 디시콘에 접근할 경우 CORS 문제가 발생하여 이런 구조로 동작하게끔 하였습니다.
 
-![Demo](/demo.gif)
+TODO: 프록시 서버를 WASM으로 컴파일한 것을 확장프로그램 내에서 실행 및 적용시킬 수 있는지 확인
 
-## Examples of integrations
+## Stack
 
--   [Tailwind CSS](https://tailwindcss.com/) – is in the [tailwindcss](https://github.com/NekitCorp/chrome-extension-svelte-typescript-boilerplate/tree/tailwindcss) branch
+- Svelte
+- TypeScript
+- Tailwind CSS
+- Yarn
+- Golang
+- WASM (WIP)
 
-## Development
-
-```bash
-# install dependencies
-npm i
-
-# build files to `/dist` directory
-# HMR for extension pages and content scripts
-npm run dev
-```
-
-### Load unpacked extensions
-
-[Getting Started Tutorial](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked)
-
-1. Open the Extension Management page by navigating to `chrome://extensions`.
-2. Enable Developer Mode by clicking the toggle switch next to `Developer mode`.
-3. Click the `LOAD UNPACKED` button and select the `/dist` directory.
-
-## Build
+## Usage
 
 ```bash
-# build files to `/dist` directory
-$ npm run build
+yarn install
+yarn build
+# 생성된 dist 폴더를 크롬 확장프로그램에서 import
+
+cd proxy-server
+go run main.go
 ```
+
+[![dccon-downloader](http://img.youtube.com/vi/MakqEhwcWzg/0.jpg)](https://youtu.be/MakqEhwcWzg)

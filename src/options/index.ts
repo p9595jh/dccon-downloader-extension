@@ -1,16 +1,24 @@
-import { mount } from "svelte";
-import Options from "../components/Options.svelte";
-import { count } from "../storage";
+import { mount } from 'svelte';
+import Options from '../components/Options.svelte';
+import '../tailwind.css';
 
-// Options
-// https://developer.chrome.com/docs/extensions/mv3/options/
-
-function render() {
-    const target = document.getElementById("app");
-
-    if (target) {
-        mount(Options, { target, props: { count } });
-    }
+async function initWasm() {
+  // @ts-ignore
+  const go = new Go();
+  const result = await WebAssembly.instantiateStreaming(
+    fetch(chrome.runtime.getURL('proxy.wasm')),
+    go.importObject,
+  );
+  go.run(result.instance);
 }
 
-document.addEventListener("DOMContentLoaded", render);
+async function render() {
+  const target = document.getElementById('app');
+  await initWasm();
+
+  if (target) {
+    mount(Options, { target, props: {} });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', render);
