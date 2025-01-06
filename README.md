@@ -10,7 +10,7 @@ Golang으로 된 프록시 서버를 실행시킨 뒤, 크롬 확장프로그램
 
 1. 확장프로그램에서 크롤링을 통해 디시콘 이미지들의 URL을 가져옴
 2. URL을 프록시 서버에 전달
-3. 프록시 서버에서 디시콘 이미지를 다운로드 (header { Referer: https://gall.dcinside.com })
+3. 프록시 서버에서 디시콘 이미지를 다운로드 (header { Referer: https://dccon.dcinside.com })
 4. 다운로드 받은 이미지를 base64로 인코딩 및 반환
 5. 확장프로그램에서 base64 문자열을 Uint8Array로 변환
 6. 파일 시그니처를 이용해 확장자 추출
